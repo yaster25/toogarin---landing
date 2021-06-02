@@ -1,0 +1,328 @@
+
+/*
+================================================================================
+|                                     HEADER                                   |
+================================================================================
+*/
+
+
+.header{
+    z-index: 10; 
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    padding: 40px 0;
+    transition: $default-transition;
+    .wrapper{
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(space-between);
+    }
+  
+    &__phone{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+        color: $color-white;
+        &:hover{
+            color: $color-yellow;
+        }
+    }
+    
+    &.fixed{
+        padding: 7px 0;
+        background: rgba(#000, 0.9);
+    }
+
+}
+.logo{    
+    display: block;
+    width: 168px;
+    height: 50px;
+    img{
+        max-width: 100%;
+        height: auto;
+    }    
+}
+
+.nav{   
+    font-weight: 500;
+    font-weight: 450;
+    font-size: 24px;
+    position: relative;
+    z-index: 9;
+    white-space: nowrap;
+    margin-right: -70px;
+    margin-bottom: 55px;
+    &-item{
+        border-bottom: 1px solid rgba($color-white, 0.2);
+        &__link{
+           padding: 21px 0 21px;
+            display: block;      
+            color: $color-white;
+            white-space: nowrap;
+            position: relative;
+            z-index: 2;
+            &:after{
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0px;
+                height: 2px;
+                background: $color-yellow;
+                transition: $default-transition;
+            }
+            &:hover{
+                &:after{
+                    width: 64px;
+                }
+            }
+        }
+    }
+    
+}
+
+
+.menu-trigger{
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+}
+
+
+.hamburger { 
+    display: inline-block; cursor: pointer; transition-property: opacity,-webkit-filter; -webkit-transition-property: opacity,-webkit-filter; transition-property: opacity,filter; transition-property: opacity,filter,-webkit-filter; -webkit-transition-duration: .15s; transition-duration: .15s; -webkit-transition-timing-function: linear; transition-timing-function: linear; font: inherit; color: inherit; text-transform: none; background-color: transparent; border: 0; margin: 0; overflow: visible; background: transparent; width: 64px; height: 64px; 
+    transition: all 0.2s;
+    position: relative;
+}
+
+
+.hamburger-box { width: 64px; height: 64px; display: inline-block; position: relative; background: $color-yellow; transition: $default-transition; }
+.hamburger-inner { display: block; top: 50%; margin-top: -2px; }
+.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before { width: 24px; height: 2px; background-color: $color-dark; position: absolute; transition:background-color 0.3s;  border-radius: 3px; 
+   
+}
+
+.hamburger-inner::after, .hamburger-inner::before { content: ""; display: block; }
+
+.hamburger-inner::before { top: -9px;}
+
+.hamburger-inner::after { top: -18px; }
+
+.hamburger-inner { 
+    top: auto;
+    bottom: 22px;
+    width: 13px;
+    left: 20px; 
+}
+
+.hamburger:hover{
+    .hamburger-box {
+        background: $color-white;
+    }
+    .hamburger-inner, .hamburger-inner::after, .hamburger-inner::before{
+        background: $color-dark;
+    }
+}
+
+.is-active .hamburger .hamburger-inner {     
+    transform: rotate(45deg);
+    bottom: 11px;
+    left: 50%;
+    height: 2px;
+    width: 30px;
+    margin-left: -15px;
+    bottom: 50%;
+    margin-bottom: 0px;
+}
+.is-active .hamburger .hamburger-inner::before{
+    transform: rotate(90deg);
+     top: 0;
+    height: 2px;
+    width: 30px;
+}
+.is-active .hamburger .hamburger-inner::after{
+    display: none; height: 2px; 
+}
+.is-active .hamburger:hover{
+    .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
+        background: $color-dark;
+    }
+}
+
+
+body.overflow { overflow: hidden !important; position: fixed; }
+body.ios.menu-open {
+    overflow: hidden;
+    height: 100vh;
+}
+body.menu-open{
+    .main-wrapper:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.4);
+    }
+    .logo{
+        opacity: 0;
+    }
+    .header__menu{
+        display: none;
+    }
+}
+
+
+
+.sidebar{
+    position:fixed;top:0px;bottom:0;z-index:-1;
+    background:rgba($color-dark, 0.9);
+    overflow:auto; 
+    left: -420px;
+    width: 420px;
+    transition: $default-transition;
+    &.active{
+        overflow-y:auto;
+        z-index:11; 
+        left: 0;
+    }
+    &__close{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        z-index: 1;
+        left: auto;
+    }
+    
+    
+    &__logo{
+        margin-bottom: 30px;
+        display: block;
+        width: 120px;
+        img{
+            max-width:100%;
+        }
+    }
+    &__phone{
+        font-weight: 450;
+        font-size: 32px;
+        line-height: 48px;
+        color: $color-yellow;
+        margin-bottom: 30px;
+        a{
+            color:$color-yellow;
+            &:hover{
+                color:$color-white;
+            }
+        }
+    }
+    &-inner{   
+        padding: 10px 70px 30px;
+        min-height: 100%;
+    }
+    
+    
+    &__form{
+        .y-row{
+            margin-bottom: -20px;
+        }
+        .y-col{
+            padding-bottom: 20px;
+        }
+    }
+    
+    &::-webkit-scrollbar
+    {
+      width: 10px;  /* for vertical scrollbars */
+      height: 10px; /* for horizontal scrollbars */
+    }
+
+    &::-webkit-scrollbar-track
+    {
+      background: #DBDBDB;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      background:  #989898;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1330px) {
+    .header{
+        padding-left: 65px !important;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 1199px) {
+    .sidebar__phone{
+        font-size: 28px;
+    }
+    .nav-item__link {
+        padding: 16px 0;
+    }
+    .nav{
+        margin-bottom: 35px;
+    }
+}
+@media screen and (max-width: 991px) {
+   
+}
+
+@media screen and (max-width: 767px) {
+    .logo {
+        width: 120px;
+        height: 35px;
+    }
+    .header{
+        padding: 15px 0 14px;
+    }
+    .header.fixed {
+        padding: 15px 0 14px;
+    }
+    .sidebar{
+        width: 100%;
+        left: -100%;
+    }
+    .sidebar-inner {
+        padding: 10px 20px 30px;
+    }
+    .sidebar__phone {
+        font-size: 24px;
+        line-height: 36px;
+        margin-bottom: 10px;
+    }
+    .sidebar__logo{
+        margin-bottom: 10px;
+    }
+    .nav{
+        margin-right: -20px;
+    }
+}
+
+@media screen and (max-width:479px) {
+    .header__phone{
+        display: none;
+    }
+    .menu-trigger {
+        left: auto;
+        right: 0;
+        z-index: 9;
+    }
+    .header{
+        padding-left: 0px !important;
+    }
+}

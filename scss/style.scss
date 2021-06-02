@@ -1,0 +1,15 @@
+@import 'utils/_mixins';
+@import 'utils/_variables';
+
+@import "base/_reset";
+@import "base/_fonts";
+
+
+@import "components/_swiper";
+@import "components/_fancybox";
+
+@import "layout/_header";
+@import "layout/_footer";
+@import "layout/_content";
+
+
